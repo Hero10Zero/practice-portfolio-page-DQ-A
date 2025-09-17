@@ -35,13 +35,39 @@ header .tagline {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1.5rem;
     padding: 2rem;
     background-color: white;
+    flex-wrap: wrap; /* allow items to wrap on small screens */
 }
 
 .profile-pic {
     border-radius: 50%;
+    /* Responsive size: min 80px, preferred 18vw, max 180px */
+    width: clamp(80px, 18vw, 180px);
+    height: clamp(80px, 18vw, 180px);
+    object-fit: cover; /* crop to cover the box while preserving aspect */
+    display: block;
     margin-right: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Stack the about section on narrow screens and center content */
+@media (max-width: 600px) {
+    #about {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.25rem;
+    }
+
+    .profile-pic {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .about-text {
+        max-width: 100%;
+    }
 }
 
 .about-text {
